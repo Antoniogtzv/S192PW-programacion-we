@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
+Route::view('/','principal')->name('rutaprincipal');
+Route::view('/libro','libro')->name('rutalibro');
 
-Route::get('principal', function () {
-    return view('principal');
+Route::get('libro', function () {
+    return view('libro');
 });
