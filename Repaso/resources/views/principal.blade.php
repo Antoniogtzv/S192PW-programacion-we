@@ -3,11 +3,11 @@
 @section('title', 'Noticia Literaria')
 
 @section('content')
-    <!-- Contenido de la Noticia Literaria -->
+  
     <div class="container my-4">
         <h1 class="text-center">Las cinco lecturas recomendadas de Manuel Rivas, premio Nacional de las Letras</h1>
 
-        <!-- Contenido de la noticia -->
+
         <p><strong>Literatura</strong><br>
         Manuel Rivas gana el Premio Nacional de las Letras 2024.<br>
         Silvia R. Pontevedra / Amalia Bulnes | Santiago / Sevilla | 29 oct 2024 - 06:53 CST<br>
@@ -49,14 +49,14 @@
         Los lectores escriben sobre los casos de abusos sexuales, la importancia del Me Too, las apariencias de la sociedad y la literatura en los planes de estudios.</p>
     </div>
 
-    <!-- Pie de página -->
+ 
     <footer class="text-center mt-4 py-3 bg-light">
         <p>Biblioteca Luz y Letras © <span id="fecha"></span></p>
     </footer>
 @endsection
 
 @section('scripts')
-    <!-- JavaScript para la Fecha Dinámica -->
+  
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const fecha = new Date();

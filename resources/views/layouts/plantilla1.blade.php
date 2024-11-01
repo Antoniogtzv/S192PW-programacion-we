@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ route('rutainicio') }}">Turista sin Maps</a>
+        <a class="navbar-brand" href="{{ route('rutainicio') }}">Orientacion Educativa</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -20,11 +20,11 @@
           <ul class="navbar-nav">
 
             <li class="nav-item active">
-              <a class="nav-link {{ request()->routeIs('rutaform')?'text-warning':''}}" href="{{route('rutaform')}}">Registro de Clientes </span></a>
+              <a class="nav-link {{ request()->routeIs('rutaform')?'text-warning':''}}" href="{{route('rutaform')}}">Registrar Pacientes </span></a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('rutaclientes')?'text-success':''}}" href="{{route('rutaclientes')}}">Consultar clientes</a>
+              <a class="nav-link {{ request()->routeIs('rutaclientes')?'text-success':''}}" href="{{route('rutaclientes')}}">Consultar Pacientes</a>
             </li>
           </ul>
         </nav>

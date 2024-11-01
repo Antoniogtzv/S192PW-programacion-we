@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
+Route::get('/nuevo-paciente', function () {
+    return view('nuevo_paciente');
+})->name('nuevo.paciente');
+
+Route::post('/guardar-paciente', [PacienteController::class, 'guardar'])->name('guardar.paciente');
