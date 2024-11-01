@@ -1,43 +1,73 @@
-@extends('layouts.plantilla') {{-- Si tienes una plantilla principal --}}
+@extends('layouts.plantilla')
+
 @section('content')
 
-@include('layouts.plantilla') {{-- Incluir el navbar en cualquier lugar de tu vista --}}
+@include('layouts.plantilla')
 
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">ISBN</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Titulo</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Autor</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Páginas</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Año</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Editorial</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Email de Editorial</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+<form id="formLibro" method="POST" action="{{ route('libro.guardar') }}">
+    @csrf <!-- Token de protección contra CSRF -->
+    <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Ingrese ISBN" required>
+    </div>
+    <div class="form-group">
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ingrese título" required>
+    </div>
+    <div class="form-group">
+        <label for="autor">Autor</label>
+        <input type="text" class="form-control" id="autor" name="autor" placeholder="Ingrese autor" required>
+    </div>
+    <div class="form-group">
+        <label for="paginas">Páginas</label>
+        <input type="number" class="form-control" id="paginas" name="paginas" placeholder="Ingrese número de páginas" required>
+    </div>
+    <div class="form-group">
+        <label for="anio">Año</label>
+        <input type="number" class="form-control" id="anio" name="anio" placeholder="Ingrese año" required>
+    </div>
+    <div class="form-group">
+        <label for="editorial">Editorial</label>
+        <input type="text" class="form-control" id="editorial" name="editorial" placeholder="Ingrese editorial" required>
+    </div>
+    <div class="form-group">
+        <label for="email_editorial">Email de Editorial</label>
+        <input type="email" class="form-control" id="email_editorial" name="email_editorial" placeholder="Ingrese email de editorial" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Libro</button>
 </form>
+
+<!-- AlertifyJS -->
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs/alertify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
+
+<script>
+    document.getElementById('formLibro').onsubmit = function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe de la manera habitual
+
+        // Enviar la petición
+        fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Muestra la alerta de éxito
+            alertify.success('Registro guardado con éxito.');
+        })
+        .catch(error => {
+            alertify.error('Error al guardar el registro'); // Muestra el mensaje de error
+            console.error('Error:', error);
+        });
+    };
+</script>
 
 @endsection

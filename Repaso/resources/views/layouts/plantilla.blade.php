@@ -19,7 +19,7 @@
                     <a class="nav-link" href="{{ route('rutaprincipal') }}">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('rutaprincipal') }}">Registrar libro</a>
+                    <a class="nav-link" href="{{ route('rutalibro') }}">Registrar libro</a>
                 </li>
             </ul>
         </div>

@@ -12,12 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\LibroController;
 
-Route::post('/libro', [LibroController::class, 'guardar'])->name('libro.guardar');
-
-
-Route::view('/','principal')->name('rutaprincipal');
-Route::view('/libro', 'libro')->name('rutalibro');
-Route::post('/libro', [LibroController::class, 'guardar'])->name('guardar.libro');
-Route::post('/libro', [LibroController::class, 'guardar'])->name('libro.guardar');
+Route::get('/', function () {
+    return view('welcome');
+});
